@@ -61,6 +61,12 @@ function updateCity(event) {
       `${apiUrl}${apiUrlCityToday}${searchInput.value}&units=${units}&appid=${apiKey}`
     )
     .then(showWeather);
+  let apiUrlCityForecast = `forecast?q=`;
+  axios
+    .get(
+      `${apiUrl}${apiUrlCityForecast}${searchInput.value}&units=${units}&appid=${apiKey}`
+    )
+    .then(showForecast);
 }
 const form = document.querySelector("form");
 form.addEventListener("submit", updateCity);
@@ -78,7 +84,7 @@ function searchCoordinates(position) {
 
   axios
     .get(
-      `${apiUrl}forecast?lat=${currentLat}&lon=${currentLon}&appid=${apiKey}`
+      `${apiUrl}forecast?lat=${currentLat}&lon=${currentLon}&units=${units}&appid=${apiKey}`
     ).then(showForecast) 
 }
 
@@ -109,6 +115,7 @@ function updateCityForecast(event) {
 
 //to show the current weather
 function showWeather(response) {
+  console.log(response);
   console.log(response.data.weather[0].main);
   console.log(response.data.name);
   console.log(response.data.main.temp);
@@ -142,7 +149,7 @@ let fifthDay = document.querySelector("#fifthDay");
 
 //For weather forecast
 function showForecast(response) {
-  console.log(response);
+  console.log(response.data.list[0].main.temp_max);
   tomorrow.innerHTML = days[now.getDay() + 1] + ` ` + (now.getDate() + 1);
   secondDay.innerHTML = days[now.getDay() + 2] + ` ` + (now.getDate() + 2);
   thirdDay.innerHTML = days[now.getDay() + 3] + ` ` + (now.getDate() + 3);
