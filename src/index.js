@@ -104,7 +104,6 @@ function updateCityForecast(event) {
       `${apiUrl}forecast?q=${searchInput.value}&appid=${apiKey}`
     )
     .then(showForecast);
-
 }
 
 //to show the current weather
@@ -145,6 +144,8 @@ let fifthDay = document.querySelector("#fifthDay");
 function showForecast(response) {
   console.log(response);
   console.log(response.data.list[0].main.temp_max);
+  console.log(response.data.list[0].main.temp_min);
+  console.log(response.data.list[0].weather[0].main);
   tomorrow.innerHTML = days[now.getDay() + 1] + ` ` + (now.getDate() + 1);
   secondDay.innerHTML = days[now.getDay() + 2] + ` ` + (now.getDate() + 2);
   thirdDay.innerHTML = days[now.getDay() + 3] + ` ` + (now.getDate() + 3);
