@@ -1,0 +1,131 @@
+body {
+  background-color: #9ba4b4;
+}
+
+.box {
+  background-color: #f1f6f9;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  display: block;
+  margin: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
+  max-width: 100%;
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  display: block;
+  text-align: center;
+  font-size: 40px;
+  color: #14274e;
+  margin: 30px 30px 30px 30px;
+  padding: 30px;
+}
+
+.todaysForecast {
+  display: block;
+  margin: auto 0;
+  border: solid;
+  border-color: white;
+  border-width: 2px;
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
+  color: #394867;
+}
+
+.currentWeather {
+  color: #0a043c;
+  max-width: 75%;
+}
+
+h4.currentLocation {
+  text-align: center;
+  font-size: 40px;
+}
+
+h4.currentTime {
+  font-size: 16px;
+}
+
+#currentTemperature {
+  font-size: 40px;
+}
+
+#search-text-input {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  background-color: #ffff;
+  color: #03506f;
+  border: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+  max-width: 70%;
+}
+
+#searchButton {
+  display: block;
+  margin: 0 auto;
+  background-color: #ffff;
+  color: #03506f;
+  border: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+}
+
+#searchButton:hover {
+  background-color: #03506f;
+  color: #ffff;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+}
+
+#locateButton {
+  display: block;
+  margin: 0 auto;
+  background-color: #ffff;
+  color: #03506f;
+  border: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+}
+
+#locateButton:hover {
+  background-color: #03506f;
+  color: #ffff;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+}
+.weatherForecast {
+  border: solid;
+  border-color: white;
+  border-width: 2px;
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
+  color: #394867;
+}
+
+ul {
+  list-style-type: none;
+  color: #394867;
+}
+li {
+  text-align: left;
+  padding: 10px 20px 10px 20px;
+}
+
+footer.first {
+  text-align: center;
+}
+
+footer.second {
+  font-size: 8px;
+}
