@@ -38,7 +38,6 @@ let months = [
 
 let month = months[now.getMonth()];
 
-
 function showTime() {
   let currentTime = document.querySelector("h4.currentTime");
   currentTime.innerHTML = `${day} ${hours}:${minutes}, ${month} ${date}, ${now.getFullYear()}`;
@@ -88,9 +87,6 @@ function searchCoordinates(position) {
     ).then(showForecast) 
 }
 
-
-
-
 //for defining the coordinates
 function locateCoordinates() {
   navigator.geolocation.getCurrentPosition(searchCoordinates);
@@ -110,8 +106,6 @@ function updateCityForecast(event) {
     .then(showForecast);
 
 }
-
-// TÄSTÄ POISTIN SÄÄENNUSTEEN KOORDINAATTIEN MUKAAN
 
 //to show the current weather
 function showWeather(response) {
@@ -149,6 +143,7 @@ let fifthDay = document.querySelector("#fifthDay");
 
 //For weather forecast
 function showForecast(response) {
+  console.log(response);
   console.log(response.data.list[0].main.temp_max);
   tomorrow.innerHTML = days[now.getDay() + 1] + ` ` + (now.getDate() + 1);
   secondDay.innerHTML = days[now.getDay() + 2] + ` ` + (now.getDate() + 2);
