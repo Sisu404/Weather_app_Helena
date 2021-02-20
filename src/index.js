@@ -50,7 +50,7 @@ const units = "metric";
 const apiUrl = `https://api.openweathermap.org/data/2.5/`;
 const searchInput = document.querySelector("#search-text-input");
 
-//WHEN SEARCHING BY CITY NAME
+//For searching weather based on city name 
 function updateCity(event) {
   event.preventDefault();
   console.log(searchInput.value);
@@ -69,22 +69,22 @@ function updateCity(event) {
 }
 const form = document.querySelector("form");
 form.addEventListener("submit", updateCity);
-form.addEventListener("submit", updateCityForecast);
 
-//For searching the location based on the coordinates
+//For searching weather based on the coordinates
 function searchCoordinates(position) {
   const currentLat = position.coords.latitude;
   const currentLon = position.coords.longitude;
+  let apiUrlCoordsToday = `weather?`;
   axios
     .get(
-      `${apiUrl}weather?lat=${currentLat}&lon=${currentLon}&units=${units}&appid=${apiKey}`
+      `${apiUrl}${apiUrlCoordsToday}lat=${currentLat}&lon=${currentLon}&units=${units}&appid=${apiKey}`
     )
     .then(showWeather);
-
+let apiUrlCoordsForecast = `forecast?`;
   axios
     .get(
-      `${apiUrl}forecast?lat=${currentLat}&lon=${currentLon}&units=${units}&appid=${apiKey}`
-    ).then(showForecast) 
+      `${apiUrl}${apiUrlCoordsForecast}lat=${currentLat}&lon=${currentLon}&units=${units}&appid=${apiKey}`
+    ).then(showForecast); 
 }
 
 //for defining the coordinates
@@ -94,17 +94,6 @@ function locateCoordinates() {
 
 let button = document.querySelector("#locateButton");
 button.addEventListener("click", locateCoordinates);
-
-//For forecast when searching by city name
-function updateCityForecast(event) {
-  event.preventDefault();
-  console.log(searchInput.value);
-  axios
-    .get(
-      `${apiUrl}forecast?q=${searchInput.value}&appid=${apiKey}`
-    )
-    .then(showForecast);
-}
 
 //to show the current weather
 function showWeather(response) {
