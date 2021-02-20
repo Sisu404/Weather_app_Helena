@@ -1,8 +1,16 @@
 //TIME
 let now = new Date();
 let date = now.getDate();
-let hour = (`0`+now.getHours()).slice(-2);
-let minutes = (`0`+now.getMinutes()).slice(-2);
+let hours = now.getHours();
+if (hours < 10) {
+    hours = `0${hours}`;
+  } 
+
+let minutes = now.getMinutes();
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+  } 
+
 let days = [
   "Sunday",
   "Monday",
@@ -31,12 +39,9 @@ let months = [
 let month = months[now.getMonth()];
 
 
-  
-
-
 function showTime() {
   let currentTime = document.querySelector("h4.currentTime");
-  currentTime.innerHTML = `${day} ${hour}:${minutes}, ${month} ${date}, ${now.getFullYear()}`;
+  currentTime.innerHTML = `${day} ${hours}:${minutes}, ${month} ${date}, ${now.getFullYear()}`;
 }
 showTime();
 
@@ -63,17 +68,22 @@ form.addEventListener("submit", updateCityForecast);
 
 //For searching the location based on the coordinates
 function searchCoordinates(position) {
-  console.log(position.coords.latitude);
-  console.log(position.coords.longitude);
-  let apiUrlCoordsToday = `weather?`;
-  let currentLat = position.coords.latitude;
-  let currentLon = position.coords.longitude;
+  const currentLat = position.coords.latitude;
+  const currentLon = position.coords.longitude;
   axios
     .get(
-      `${apiUrl}${apiUrlCoordsToday}lat=${currentLat}&lon=${currentLon}&units=${units}&appid=${apiKey}`
+      `${apiUrl}weather?lat=${currentLat}&lon=${currentLon}&units=${units}&appid=${apiKey}`
     )
     .then(showWeather);
+
+  axios
+    .get(
+      `${apiUrl}forecast?lat=${currentLat}&lon=${currentLon}&appid=${apiKey}`
+    ).then(showForecast) 
 }
+
+
+
 
 //for defining the coordinates
 function locateCoordinates() {
@@ -87,12 +97,12 @@ button.addEventListener("click", locateCoordinates);
 function updateCityForecast(event) {
   event.preventDefault();
   console.log(searchInput.value);
-  let days = `5`;
   axios
     .get(
-      `${apiUrl}forecast/daily?q=${searchInput.value}&cnt=${days}&units=${units}&appid=${apiKey}`
+      `${apiUrl}forecast?q=${searchInput.value}&appid=${apiKey}`
     )
     .then(showForecast);
+
 }
 
 // TÄSTÄ POISTIN SÄÄENNUSTEEN KOORDINAATTIEN MUKAAN
