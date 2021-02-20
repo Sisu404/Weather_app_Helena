@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,800;0,900;1,100;1,500&display=swap"
+        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title> Weather App </title>
+    <link href="src/styles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="box">
+            <h1> Weather App </h1>
+
+            <form>
+                <input type="text" placeholder="Enter city" autocomplete="off" autofocus="on" id="search-text-input" />
+                </br> <input type="submit" value="Search" id="searchButton" />
+
+            </form>
+            </br>
+            <button id=locateButton>Locate me</button>
+            <br />
+
+            <div class="todaysForecast">
+                <h4 class="currentLocation"></h4>
+                <h4 class="currentTime"></h4>
+                <h4 class="currentTemperature"></h4>
+                <h4 class="currentTempMaxMin"></h4>
+                <h4 class="weatherMainly"></h4>
+                <h4 class="currentEmoji"></h4>
+                <h4 class="currentHumidity"></h4>
+                <h4 class="currentWind"></h4>
+            </div>
+            <br />
+            <br />
+
+            <div class="weatherForecast">
+                <h3>5 Day Weather Forecast</h3>
+                <br />
+                <br />
+
+                <ul class="Days">
+                    <li>
+                        <span class="firstDay">
+                            <p class="date"></p>
+                            <p class="max">highest temperature</p>
+                            <p class="min">lowest temperature</p>
+                            <p class=emoji></p>
+                        </span>
+                    </li>
+
+                    <li>
+                        <span id="secondDay"></span> highest temperature / lowest temperature emoji
+                    </li>
+
+
+
+                    <li>
+                        <span id="thirdDay"></span> highest temperature / lowest temperature emoji
+                    </li>
+
+
+
+                    <li>
+                        <span id="fourthDay"></span> highest temperature / lowest temperature emoji
+                    </li>
+
+
+                    <li>
+                        <span id="fifthDay"></span> highest temperature emoji / lowest temperature emoji
+                    </li>
+
+                </ul>
+            </div>
+            <br />
+            <footer class="first">Coded by Helena</footer>
+            <footer class="second">
+                <div>Icons made by <a href="https://www.flaticon.com/authors/iconixar" target="_blank"
+                        title="iconixar">iconixar</a> from <a href="https://www.flaticon.com/" target="_blank"
+                        title="Flaticon">www.flaticon.com</a></div>
+            </footer>
+        </div>
+
+
+
+        <script src="src/index.js"></script>
+</body>
+
+</html>
