@@ -100,8 +100,12 @@ function showWeather(response) {
   currentTempElement.innerHTML = `${currentTemp}&degC`;
   let currentTempMax = Math.round(response.data.main.temp_max);
   let currentTempMin = Math.round(response.data.main.temp_min);
-  let currentTempMaxMinElement = document.querySelector("h4.currentTempMaxMin");
+  let currentTempMaxMinElement = document.querySelector("#currentTempMaxMin");
   currentTempMaxMinElement.innerHTML = `Max: ${currentTempMax}&degC Min: ${currentTempMin}&degC`;
+  let weatherIconCodeToday = response.data.weather[0].icon;
+  let weatherIconToday = document.querySelector("#currentWeatherIcon");
+  weatherIconToday.setAttribute("src",`http://openweathermap.org/img/wn/${weatherIconCodeToday}@2x.png`);
+  weatherIconToday.setAttribute("alt", response.data.weather[0].description);
   let weatherMainly = document.querySelector("#weatherMainly");
   weatherMainly.innerHTML = `${response.data.weather[0].main}`;
   let currentHumidity = document.querySelector("#currentHumidity");
