@@ -97,15 +97,8 @@ button.addEventListener("click", locateCoordinates);
 
 //to show the current weather
 function showWeather(response) {
-  console.log(response);
-  console.log(response.data.weather[0].main);
-  console.log(response.data.name);
-  console.log(response.data.main.temp);
-  console.log(response.data.main.temp_max);
-  console.log(response.data.main.temp_min);
-  console.log(response.data.main.humidity);
-  console.log(response.data.wind.speed);
-  console.log(response.data.sys.country);
+  let currentLocation = document.querySelector("#currentLocation");
+  currentLocation.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   let currentTemp = Math.round(response.data.main.temp);
   let currentTempElement = document.querySelector("#currentTemperature");
   currentTempElement.innerHTML = `${currentTemp}&degC`;
@@ -113,13 +106,11 @@ function showWeather(response) {
   let currentTempMin = Math.round(response.data.main.temp_min);
   let currentTempMaxMinElement = document.querySelector("h4.currentTempMaxMin");
   currentTempMaxMinElement.innerHTML = `Max: ${currentTempMax}&degC Min: ${currentTempMin}&degC`;
-  let weatherMainly = document.querySelector("h4.weatherMainly");
+  let weatherMainly = document.querySelector("#weatherMainly");
   weatherMainly.innerHTML = `${response.data.weather[0].main}`;
-  let currentLocation = document.querySelector("#currentLocation");
-  currentLocation.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
-  let currentHumidity = document.querySelector("h4.currentHumidity");
+  let currentHumidity = document.querySelector("#currentHumidity");
   currentHumidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
-  let currentWind = document.querySelector("h4.currentWind");
+  let currentWind = document.querySelector("#currentWind");
   currentWind.innerHTML = `Wind: ${response.data.wind.speed} m/s`;
 }
 //DAYS AND DATES FOR FORECAST
