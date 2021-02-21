@@ -34,25 +34,17 @@ h1 {
   color: #394867;
 }
 
-h4.currentTemperature {
-  font-size: 46px;
-}
-.currentWeather {
-  color: #0a043c;
-  max-width: 75%;
-}
-
-h4.currentLocation {
+#currentLocation {
   text-align: center;
   font-size: 40px;
 }
 
-h4.currentTime {
+.currentTime {
   font-size: 16px;
 }
 
 #currentTemperature {
-  font-size: 40px;
+  font-size: 46px;
 }
 
 #search-text-input {

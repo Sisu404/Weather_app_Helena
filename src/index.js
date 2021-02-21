@@ -107,7 +107,7 @@ function showWeather(response) {
   console.log(response.data.wind.speed);
   console.log(response.data.sys.country);
   let currentTemp = Math.round(response.data.main.temp);
-  let currentTempElement = document.querySelector("h4.currentTemperature");
+  let currentTempElement = document.querySelector("#currentTemperature");
   currentTempElement.innerHTML = `${currentTemp}&degC`;
   let currentTempMax = Math.round(response.data.main.temp_max);
   let currentTempMin = Math.round(response.data.main.temp_min);
@@ -115,7 +115,7 @@ function showWeather(response) {
   currentTempMaxMinElement.innerHTML = `Max: ${currentTempMax}&degC Min: ${currentTempMin}&degC`;
   let weatherMainly = document.querySelector("h4.weatherMainly");
   weatherMainly.innerHTML = `${response.data.weather[0].main}`;
-  let currentLocation = document.querySelector("h4.currentLocation");
+  let currentLocation = document.querySelector("#currentLocation");
   currentLocation.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   let currentHumidity = document.querySelector("h4.currentHumidity");
   currentHumidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
