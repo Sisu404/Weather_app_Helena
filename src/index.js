@@ -1,16 +1,15 @@
 //TIME
+function showTime() {
 let now = new Date();
 let date = now.getDate();
 let hours = now.getHours();
 if (hours < 10) {
     hours = `0${hours}`;
   } 
-
 let minutes = now.getMinutes();
 if (minutes < 10) {
   minutes = `0${minutes}`;
   } 
-
 let days = [
   "Sunday",
   "Monday",
@@ -35,13 +34,10 @@ let months = [
   "Nov",
   "Dec"
 ];
-
 let month = months[now.getMonth()];
-
-
-  let currentTime = document.querySelector("#currentTime");
+let currentTime = document.querySelector("#currentTime");
   currentTime.innerHTML = `${day} ${hours}:${minutes}, ${month} ${date}, ${now.getFullYear()}`;
-
+}
 showTime();
 
 //for weather api
