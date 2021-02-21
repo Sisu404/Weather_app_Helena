@@ -38,10 +38,10 @@ let months = [
 
 let month = months[now.getMonth()];
 
-function showTime() {
-  let currentTime = document.querySelector("h4.currentTime");
+
+  let currentTime = document.querySelector("#currentTime");
   currentTime.innerHTML = `${day} ${hours}:${minutes}, ${month} ${date}, ${now.getFullYear()}`;
-}
+
 showTime();
 
 //for weather api
