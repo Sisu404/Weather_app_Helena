@@ -19,8 +19,8 @@ h1 {
   text-align: center;
   font-size: 40px;
   color: #14274e;
-  margin: 30px 30px 30px 30px;
-  padding: 30px;
+  padding: 50px;
+  margin: auto 0;
 }
 
 .todaysForecast {
