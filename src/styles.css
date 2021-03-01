@@ -34,6 +34,16 @@ h1 {
   color: #394867;
 }
 
+.todaysForecast .active {
+  color: black;
+  cursor: default;
+  text-decoration: none;
+}
+
+.todaysForecast .active:hover {
+  text-decoration: none;
+}
+
 #currentLocation {
   text-align: center;
   font-size: 40px;

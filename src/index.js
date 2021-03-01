@@ -93,24 +93,25 @@ button.addEventListener("click", locateCoordinates);
 
 //to show the current weather
 function showWeather(response) {
-  let currentLocation = document.querySelector("#currentLocation");
-  currentLocation.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
-  let currentTemp = Math.round(response.data.main.temp);
   let currentTempElement = document.querySelector("#currentTemperature");
-  currentTempElement.innerHTML = `${currentTemp}&degC`;
   let currentTempMax = Math.round(response.data.main.temp_max);
   let currentTempMin = Math.round(response.data.main.temp_min);
   let currentTempMaxMinElement = document.querySelector("#currentTempMaxMin");
-  currentTempMaxMinElement.innerHTML = `Max: ${currentTempMax}&degC Min: ${currentTempMin}&degC`;
+  const weatherMainly = document.querySelector("#weatherMainly");
   let weatherIconCodeToday = response.data.weather[0].icon;
   let weatherIconToday = document.querySelector("#currentWeatherIcon");
+  let currentLocation = document.querySelector("#currentLocation");
+  let currentHumidity = document.querySelector("#currentHumidity");
+  let currentWind = document.querySelector("#currentWind");
+
+  celsiusTemperature = (response.data.main.temp);
+  currentTempElement.innerHTML = Math.round(celsiusTemperature);
+  currentTempMaxMinElement.innerHTML = `Max: ${currentTempMax}&degC Min: ${currentTempMin}&degC`;
   weatherIconToday.setAttribute("src",`http://openweathermap.org/img/wn/${weatherIconCodeToday}@2x.png`);
   weatherIconToday.setAttribute("alt", response.data.weather[0].description);
-  let weatherMainly = document.querySelector("#weatherMainly");
   weatherMainly.innerHTML = `${response.data.weather[0].main}`;
-  let currentHumidity = document.querySelector("#currentHumidity");
+  currentLocation.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   currentHumidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
-  let currentWind = document.querySelector("#currentWind");
   currentWind.innerHTML = `Wind: ${response.data.wind.speed} m/s`;
 }
 //DAYS AND DATES FOR FORECAST
@@ -132,3 +133,28 @@ function showForecast(response) {
   fourthDay.innerHTML = days[now.getDay() + 4] + ` ` + (now.getDate() + 4);
   fifthDay.innerHTML = days[now.getDay() + 5] + ` ` + (now.getDate() + 5);
 }
+
+function convertFahrenheitTemperature(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector("#currentTemperature");
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemperature = celsiusTemperature * 1.8 + 32;
+  currentTemperature.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function convertCelsiusTemperature(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector("#currentTemperature");
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  currentTemperature.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", convertFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", convertCelsiusTemperature);
