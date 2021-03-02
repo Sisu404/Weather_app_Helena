@@ -131,10 +131,12 @@ h1 {
 }
 
 ul {
+  display: block;
   list-style-type: none;
   color: #394867;
 }
 li {
+  display: inline-flex;
   text-align: left;
   padding: 10px 20px 10px 20px;
 }
