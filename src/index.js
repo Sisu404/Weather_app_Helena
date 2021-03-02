@@ -94,9 +94,8 @@ button.addEventListener("click", locateCoordinates);
 //to show the current weather
 function showWeather(response) {
   let currentTempElement = document.querySelector("#currentTemperature");
-  let currentTempMax = Math.round(response.data.main.temp_max);
-  let currentTempMin = Math.round(response.data.main.temp_min);
-  let currentTempMaxMinElement = document.querySelector("#currentTempMaxMin");
+  let currentTempMaxElement = document.querySelector("#currentTempMax");
+  let currentTempMinElement = document.querySelector("#currentTempMin");
   const weatherMainly = document.querySelector("#weatherMainly");
   let weatherIconCodeToday = response.data.weather[0].icon;
   let weatherIconToday = document.querySelector("#currentWeatherIcon");
@@ -105,8 +104,11 @@ function showWeather(response) {
   let currentWind = document.querySelector("#currentWind");
 
   celsiusTemperature = (response.data.main.temp);
+  celsiusCurrentTempMax = (response.data.main.temp_max);
+  celsiusCurrentTempMin = (response.data.main.temp_min);
   currentTempElement.innerHTML = Math.round(celsiusTemperature);
-  currentTempMaxMinElement.innerHTML = `Max: ${currentTempMax}&degC Min: ${currentTempMin}&degC`;
+  currentTempMaxElement.innerHTML = Math.round(celsiusCurrentTempMax);
+  currentTempMinElement.innerHTML = Math.round(celsiusCurrentTempMin);
   weatherIconToday.setAttribute("src",`http://openweathermap.org/img/wn/${weatherIconCodeToday}@2x.png`);
   weatherIconToday.setAttribute("alt", response.data.weather[0].description);
   weatherMainly.innerHTML = `${response.data.weather[0].main}`;
@@ -137,10 +139,16 @@ function showForecast(response) {
 function convertFahrenheitTemperature(event) {
   event.preventDefault();
   let currentTemperature = document.querySelector("#currentTemperature");
+  let currentTempMaxElement = document.querySelector("#currentTempMax");
+  let currentTempMinElement = document.querySelector("#currentTempMin");
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = celsiusTemperature * 1.8 + 32;
-  currentTemperature.innerHTML = Math.round(fahrenheitTemperature);
+  let fahrenheitTempMax = celsiusCurrentTempMax * 1.8 + 32;
+  let fahrenheitTempMin = celsiusCurrentTempMin * 1.8 + 32;
+    currentTemperature.innerHTML = Math.round(fahrenheitTemperature);
+  currentTempMaxElement.innerHTML = Math.round(fahrenheitTempMax);
+  currentTempMinElement.innerHTML = Math.round(fahrenheitTempMin);
 }
 
 function convertCelsiusTemperature(event) {
@@ -152,6 +160,8 @@ function convertCelsiusTemperature(event) {
 }
 
 let celsiusTemperature = null;
+let celsiusCurrentTempMax = null;
+let celsiusCurrentTempMin = null;
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", convertFahrenheitTemperature);
