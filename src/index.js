@@ -107,8 +107,8 @@ function showWeather(response) {
   celsiusCurrentTempMax = (response.data.main.temp_max);
   celsiusCurrentTempMin = (response.data.main.temp_min);
   currentTempElement.innerHTML = Math.round(celsiusTemperature);
-  currentTempMaxElement.innerHTML = Math.round(celsiusCurrentTempMax);
-  currentTempMinElement.innerHTML = Math.round(celsiusCurrentTempMin);
+  currentTempMaxElement.innerHTML = "Max:" + Math.round(celsiusCurrentTempMax);
+  currentTempMinElement.innerHTML = "Min:" + Math.round(celsiusCurrentTempMin);
   weatherIconToday.setAttribute("src",`http://openweathermap.org/img/wn/${weatherIconCodeToday}@2x.png`);
   weatherIconToday.setAttribute("alt", response.data.weather[0].description);
   weatherMainly.innerHTML = `${response.data.weather[0].main}`;
@@ -146,17 +146,21 @@ function convertFahrenheitTemperature(event) {
   let fahrenheitTemperature = celsiusTemperature * 1.8 + 32;
   let fahrenheitTempMax = celsiusCurrentTempMax * 1.8 + 32;
   let fahrenheitTempMin = celsiusCurrentTempMin * 1.8 + 32;
-    currentTemperature.innerHTML = Math.round(fahrenheitTemperature);
-  currentTempMaxElement.innerHTML = Math.round(fahrenheitTempMax);
-  currentTempMinElement.innerHTML = Math.round(fahrenheitTempMin);
+  currentTemperature.innerHTML = Math.round(fahrenheitTemperature);
+  currentTempMaxElement.innerHTML = "Max:" + Math.round(fahrenheitTempMax);
+  currentTempMinElement.innerHTML = "Min:"  + Math.round(fahrenheitTempMin);
 }
 
 function convertCelsiusTemperature(event) {
   event.preventDefault();
   let currentTemperature = document.querySelector("#currentTemperature");
+  let currentTempMaxElement = document.querySelector("#currentTempMax");
+  let currentTempMinElement = document.querySelector("#currentTempMin");
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
   currentTemperature.innerHTML = Math.round(celsiusTemperature);
+  currentTempMaxElement.innerHTML = "Max:" + Math.round(celsiusCurrentTempMax);
+  currentTempMinElement.innerHTML = "Min:"  + Math.round(celsiusCurrentTempMin);
 }
 
 let celsiusTemperature = null;

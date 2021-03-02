@@ -22,10 +22,22 @@ h1 {
   padding: 50px;
   margin: auto 0;
 }
+.current {
+  display: inline-flex;
+  margin: auto 0;
+}
+.icon {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.currentMaxMin {
+  display: inline-flex;
+  margin: auto 0;
+}
 
 .todaysForecast {
-  display: block;
-  margin: auto 0;
   border: solid;
   border-color: white;
   border-width: 2px;
