@@ -22,6 +22,11 @@ h1 {
   padding: 50px;
   margin: auto 0;
 }
+
+h2 {
+  display: block;
+  text-align: center;
+}
 .current {
   display: inline-flex;
   margin: auto 0;

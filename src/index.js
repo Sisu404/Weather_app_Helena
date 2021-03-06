@@ -40,8 +40,6 @@ let currentTime = document.querySelector("#currentTime");
 }
 showTime();
 
-
-
 function getWeekdays(startDate, daysToAdd) {
     const aryWeekdays = [];
 
@@ -67,21 +65,18 @@ function dayAsString(dayIndex) {
 }
 
 let startDate = new Date();
-const aryWeekdays = getWeekdays(startDate, 10);
-
-console.log(aryWeekdays);
-
-
+const aryWeekdays = getWeekdays(startDate, 6);
 
 //for weather api
 const apiKey = "e87046c6d26de6ef81b6cae3b1026199";
 const units = "metric";
 const apiUrl = `https://api.openweathermap.org/data/2.5/`;
-const searchInput = document.querySelector("#search-text-input");
+
 
 //For searching city coords based on input value 
 function findCity(event) {
   event.preventDefault();
+  let searchInput = document.querySelector("#search-text-input");
   console.log(searchInput.value);
   let apiUrlCityToday = `weather?q=`;
   axios
@@ -94,9 +89,12 @@ function findCity(event) {
 const form = document.querySelector("form");
 form.addEventListener("submit", findCity);
 
-//For fetching data from 
+
+
+//For fetching data after locating
 function showCoords(response) {
   console.log(response.data.coord);
+  let searchInput = document.querySelector("#search-text-input");
   let cityLat = response.data.coord.lat;
   let cityLon = response.data.coord.lon;
   let apiUrlCityToday = `weather?q=`;
@@ -129,17 +127,56 @@ let apiUrlCoordsForecast = `onecall?`;
     ).then(showForecast); 
 }
 
+
 //for defining the coordinates
 function locateCoordinates() {
   navigator.geolocation.getCurrentPosition(searchCoordinates);
+
 }
 
-let button = document.querySelector("#locateButton");
-button.addEventListener("click", locateCoordinates);
+let locateButton = document.querySelector("#locateButton");
+locateButton.addEventListener("click", locateCoordinates);
+locateButton.addEventListener("click", clearSearchField);
 
+
+function clearSearchField() {
+let searchInput = document.getElementById("form");
+searchInput = "";
+}
+
+
+//for current weather
 let currentTempElement = document.querySelector("#currentTemperature");
-let currentTempMaxElement = document.querySelector("#currentTempMax");
-let currentTempMinElement = document.querySelector("#currentTempMin");
+let currentTempMaxMinElement = document.querySelector("#currentTempMaxMin");
+
+//to show the current weather
+function showWeather(response) {
+  let weatherMainly = document.querySelector("#weatherMainly");
+  let weatherIconCodeToday = response.data.weather[0].icon;
+  let weatherIconToday = document.querySelector("#currentWeatherIcon");
+  let currentLocation = document.querySelector("#currentLocation");
+  let currentHumidity = document.querySelector("#currentHumidity");
+  let currentWind = document.querySelector("#currentWind");
+
+  celsiusTemperature = (response.data.main.temp);
+  celsiusCurrentTempMax = (response.data.main.temp_max);
+  celsiusCurrentTempMin = (response.data.main.temp_min);
+  currentTempElement.innerHTML = Math.round(celsiusTemperature);
+  currentTempMaxMinElement.innerHTML = "Max: " + Math.round(celsiusCurrentTempMax) + " " + "Min: " + Math.round(celsiusCurrentTempMin) ;
+  weatherIconToday.setAttribute("src",`http://openweathermap.org/img/wn/${weatherIconCodeToday}@2x.png`);
+  weatherIconToday.setAttribute("alt", response.data.weather[0].description);
+  weatherMainly.innerHTML = `${response.data.weather[0].main}`;
+  currentLocation.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
+  currentHumidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
+  currentWind.innerHTML = `Wind: ${response.data.wind.speed} m/s`;
+}
+//FOR FORECAST
+let tomorrow = document.querySelector("#firstDate");
+let dayAfterTomorrow = document.querySelector("#secondDate");
+let thirdDay = document.querySelector("#thirdDate");
+let fourthDay = document.querySelector("#fourthDate");
+let fifthDay = document.querySelector("#fifthDate");
+
 let firstDayMaxElement = document.querySelector("#firstMax");
 let firstDayMinElement = document.querySelector("#firstMin");
 let firstWeatherIcon = document.querySelector("#firstWeatherIcon");
@@ -156,41 +193,8 @@ let fifthDayMaxElement = document.querySelector("#fifthMax");
 let fifthDayMinElement = document.querySelector("#fifthMin");
 let fifthWeatherIcon = document.querySelector("#fifthWeatherIcon");
 
-//to show the current weather
-function showWeather(response) {
-  let weatherMainly = document.querySelector("#weatherMainly");
-  let weatherIconCodeToday = response.data.weather[0].icon;
-  let weatherIconToday = document.querySelector("#currentWeatherIcon");
-  let currentLocation = document.querySelector("#currentLocation");
-  let currentHumidity = document.querySelector("#currentHumidity");
-  let currentWind = document.querySelector("#currentWind");
-
-  celsiusTemperature = (response.data.main.temp);
-  celsiusCurrentTempMax = (response.data.main.temp_max);
-  celsiusCurrentTempMin = (response.data.main.temp_min);
-  currentTempElement.innerHTML = Math.round(celsiusTemperature);
-  currentTempMaxElement.innerHTML = "Max: " + Math.round(celsiusCurrentTempMax);
-  currentTempMinElement.innerHTML = "Min: " + Math.round(celsiusCurrentTempMin);
-  weatherIconToday.setAttribute("src",`http://openweathermap.org/img/wn/${weatherIconCodeToday}@2x.png`);
-  weatherIconToday.setAttribute("alt", response.data.weather[0].description);
-  weatherMainly.innerHTML = `${response.data.weather[0].main}`;
-  currentLocation.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
-  currentHumidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
-  currentWind.innerHTML = `Wind: ${response.data.wind.speed} m/s`;
-}
-//DAYS AND DATES FOR FORECAST
-let tomorrow = document.querySelector("#firstDate");
-let dayAfterTomorrow = document.querySelector("#secondDate");
-let thirdDay = document.querySelector("#thirdDate");
-let fourthDay = document.querySelector("#fourthDate");
-let fifthDay = document.querySelector("#fifthDate");
-
-
-
-//For weather forecast
+//to show weather forecast
 function showForecast(response) {
-  console.log(response);
-
   let firstWeatherIconCode = response.data.daily[0].weather[0].icon;
   let secondWeatherIconCode = response.data.daily[1].weather[0].icon;
   let thirdWeatherIconCode = response.data.daily[2].weather[0].icon;
@@ -200,7 +204,7 @@ function showForecast(response) {
   tomorrow.innerHTML = aryWeekdays[1];
   firstDayCelsiusTempMax = (response.data.daily[0].temp.max);
   firstDayCelsiusTempMin = (response.data.daily[0].temp.min);
-  firstDayMaxElement.innerHTML = "Max: " + Math.round(firstDayCelsiusTempMax);
+  firstDayMaxElement.innerHTML = "Max: " + Math.round(firstDayCelsiusTempMax) + " ";
   firstDayMinElement.innerHTML = "Min: " + Math.round(firstDayCelsiusTempMin);
   firstWeatherIcon.setAttribute("src",`http://openweathermap.org/img/wn/${firstWeatherIconCode}@2x.png`);
   firstWeatherIcon.setAttribute("alt", response.data.daily[0].weather[0].description);
@@ -238,6 +242,7 @@ function showForecast(response) {
   fifthWeatherIcon.setAttribute("alt", response.data.daily[4].weather[0].description);
 }
 
+//For converting current temperature and forecast into Fahrenheits and back
 function convertFahrenheitTemperature(event) {
   event.preventDefault();
   celsiusLink.classList.remove("active");

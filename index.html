@@ -30,7 +30,7 @@
             <br />
 
             <div class="todaysForecast">
-                <h4 id="currentLocation"></h4>
+                <h2 id="currentLocation"></h2>
                 <h4 id="currentTime"></h4>
                 <div class="current"><h4 id="currentTemperature"></h4><span class="units"><a href="#" id="celsius-link" class="active">°C</a> | <a href="#" id="fahrenheit-link">°F</a></span>
                 </div>
@@ -38,7 +38,7 @@
                 <img id="currentWeatherIcon" src="">
                 </div>
                 <h4 id="weatherMainly"></h4>
-                <div class="currentMaxMin"><h4 id="currentTempMax"></h4><h4 id="currentTempMin"></h4></div>
+                <h4 id="currentTempMaxMin"></h4>
                 <h4 id="currentHumidity"></h4>
                 <h4 id="currentWind"></h4>
             </div>
@@ -51,19 +51,24 @@
                 <br />
 
                 <div class="Days">
+                    <div class = row>
+                        
                     <div class="firstDay">
+                        <div class="floatLeft">
                             <h6 id="firstDate"></h6>
                             <h6 id="firstMax"></h6>
                             <h6 id="firstMin"></h6>
+                            </div>
+                            <div class="floatRight">
                             <img id="firstWeatherIcon" src="" alt="">
-                    
+                    </div>
                             </div>
                     <div class="secondDay">
                         <h6 id="secondDate"></h6>
                         <h6 id="secondMax"></h6>
                         <h6 id="secondMin"></h6>
                         <img id="secondWeatherIcon" src="" alt="">
-                    
+                    </div>
                     </div>
                     <div class="thirdDay">
                         <h6 id="thirdDate"></h6>
