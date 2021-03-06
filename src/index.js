@@ -3,14 +3,14 @@ function showTime() {
 let now = new Date();
 let date = now.getDate();
 let hours = now.getHours();
-if (hours < 10) {
-    hours = `0${hours}`;
-  } 
+  if (hours < 10) {
+      hours = `0${hours}`;
+    } 
 let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-  } 
-let days = [
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+    } 
+let weekdays = [
   "Sunday",
   "Monday",
   "Tuesday",
@@ -19,7 +19,7 @@ let days = [
   "Friday",
   "Saturday"
 ];
-let day = days[now.getDay()];
+let weekday = weekdays[now.getDay()];
 let months = [
   "Jan",
   "Feb",
@@ -36,9 +36,42 @@ let months = [
 ];
 let month = months[now.getMonth()];
 let currentTime = document.querySelector("#currentTime");
-  currentTime.innerHTML = `${day} ${hours}:${minutes}, ${month} ${date}, ${now.getFullYear()}`;
+  currentTime.innerHTML = `${weekday} ${hours}:${minutes}, ${month} ${date}, ${now.getFullYear()}`;
 }
 showTime();
+
+
+
+function getWeekdays(startDate, daysToAdd) {
+    const aryWeekdays = [];
+
+    for(let i = 0; i <= daysToAdd; i++) {
+        let currentDate = new Date();
+        currentDate.setDate(startDate.getDate() + i);
+        aryWeekdays.push(dayAsString(currentDate.getDay()));
+    }
+    return aryWeekdays;
+}
+
+function dayAsString(dayIndex) {
+    let weekdays = new Array(7);
+    weekdays[0] = "Sunday";
+    weekdays[1] = "Monday";
+    weekdays[2] = "Tuesday";
+    weekdays[3] = "Wednesday";
+    weekdays[4] = "Thursday";
+    weekdays[5] = "Friday";
+    weekdays[6] = "Saturday";
+    
+    return weekdays[dayIndex];
+}
+
+let startDate = new Date();
+const aryWeekdays = getWeekdays(startDate, 10);
+
+console.log(aryWeekdays);
+
+
 
 //for weather api
 const apiKey = "e87046c6d26de6ef81b6cae3b1026199";
@@ -146,11 +179,11 @@ function showWeather(response) {
   currentWind.innerHTML = `Wind: ${response.data.wind.speed} m/s`;
 }
 //DAYS AND DATES FOR FORECAST
-let tomorrow = document.querySelector("span.firstDay");
-let secondDay = document.querySelector("#secondDay");
-let thirdDay = document.querySelector("#thirdDay");
-let fourthDay = document.querySelector("#fourthDay");
-let fifthDay = document.querySelector("#fifthDay");
+let tomorrow = document.querySelector("#firstDate");
+let dayAfterTomorrow = document.querySelector("#secondDate");
+let thirdDay = document.querySelector("#thirdDate");
+let fourthDay = document.querySelector("#fourthDate");
+let fifthDay = document.querySelector("#fifthDate");
 
 
 
@@ -164,6 +197,7 @@ function showForecast(response) {
   let fourthWeatherIconCode = response.data.daily[3].weather[0].icon;
   let fifthWeatherIconCode = response.data.daily[4].weather[0].icon;
   
+  tomorrow.innerHTML = aryWeekdays[1];
   firstDayCelsiusTempMax = (response.data.daily[0].temp.max);
   firstDayCelsiusTempMin = (response.data.daily[0].temp.min);
   firstDayMaxElement.innerHTML = "Max: " + Math.round(firstDayCelsiusTempMax);
@@ -171,6 +205,7 @@ function showForecast(response) {
   firstWeatherIcon.setAttribute("src",`http://openweathermap.org/img/wn/${firstWeatherIconCode}@2x.png`);
   firstWeatherIcon.setAttribute("alt", response.data.daily[0].weather[0].description);
 
+  dayAfterTomorrow.innerHTML = aryWeekdays[2];
   secondDayCelsiusTempMax = (response.data.daily[1].temp.max);
   secondDayCelsiusTempMin = (response.data.daily[1].temp.min);
   secondDayMaxElement.innerHTML = "Max: " + Math.round(secondDayCelsiusTempMax);
@@ -178,32 +213,29 @@ function showForecast(response) {
   secondWeatherIcon.setAttribute("src",`http://openweathermap.org/img/wn/${secondWeatherIconCode}@2x.png`);
   secondWeatherIcon.setAttribute("alt", response.data.daily[1].weather[0].description);
   
+  thirdDay.innerHTML = aryWeekdays[3];
   thirdDayCelsiusTempMax = (response.data.daily[2].temp.max);
   thirdDayCelsiusTempMin = (response.data.daily[2].temp.min);
   thirdDayMaxElement.innerHTML = "Max: " + Math.round(thirdDayCelsiusTempMax);
   thirdDayMinElement.innerHTML = "Min: " + Math.round(thirdDayCelsiusTempMin);
   thirdWeatherIcon.setAttribute("src",`http://openweathermap.org/img/wn/${thirdWeatherIconCode}@2x.png`);
   thirdWeatherIcon.setAttribute("alt", response.data.daily[2].weather[0].description);
-    
+  
+  fourthDay.innerHTML = aryWeekdays[4];
   fourthDayCelsiusTempMax = (response.data.daily[3].temp.max);
   fourthDayCelsiusTempMin = (response.data.daily[3].temp.min);
   fourthDayMaxElement.innerHTML = "Max: " + Math.round(fourthDayCelsiusTempMax);
   fourthDayMinElement.innerHTML = "Min: " + Math.round(fourthDayCelsiusTempMin);
   fourthWeatherIcon.setAttribute("src",`http://openweathermap.org/img/wn/${fourthWeatherIconCode}@2x.png`);
   fourthWeatherIcon.setAttribute("alt", response.data.daily[3].weather[0].description);
-   
+  
+  fifthDay.innerHTML = aryWeekdays[5];
   fifthDayCelsiusTempMax = (response.data.daily[4].temp.max);
   fifthDayCelsiusTempMin = (response.data.daily[4].temp.min);
   fifthDayMaxElement.innerHTML = "Max: " + Math.round(fifthDayCelsiusTempMax);
   fifthDayMinElement.innerHTML = "Min: " + Math.round(fifthDayCelsiusTempMin);
   fifthWeatherIcon.setAttribute("src",`http://openweathermap.org/img/wn/${fifthWeatherIconCode}@2x.png`);
   fifthWeatherIcon.setAttribute("alt", response.data.daily[4].weather[0].description);
-  
-  firstDay.innerHTML = "";
-  secondDay.innerHTML = "";
-  thirdDay.innerHTML = "";
-  fourthDay.innerHTML = "";
-  fifthDay.innerHTML = "";
 }
 
 function convertFahrenheitTemperature(event) {
