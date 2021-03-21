@@ -124,23 +124,17 @@ let apiUrlCoordsForecast = `onecall?`;
   axios
     .get(
       `${apiUrl}${apiUrlCoordsForecast}lat=${currentLat}&lon=${currentLon}&units=${units}&exclude=hourly,minutely&appid=${apiKey}`
-    ).then(showForecast); 
+    ).then(showForecast);
 }
 
 
 //for defining the coordinates
 function locateCoordinates() {
   navigator.geolocation.getCurrentPosition(searchCoordinates);
-
 }
 
 let locateButton = document.querySelector("#locateButton");
 locateButton.addEventListener("click", locateCoordinates);
-locateButton.addEventListener("click", clearSearchField);
-function clearSearchField() {
-let searchInput = document.getElementById("locateButton");
-searchInput = "";
-}
 
 
 //for current weather
@@ -155,7 +149,6 @@ function showWeather(response) {
   let currentLocation = document.querySelector("#currentLocation");
   let currentHumidity = document.querySelector("#currentHumidity");
   let currentWind = document.querySelector("#currentWind");
-
   celsiusTemperature = (response.data.main.temp);
   celsiusCurrentTempMax = (response.data.main.temp_max);
   celsiusCurrentTempMin = (response.data.main.temp_min);
@@ -167,6 +160,7 @@ function showWeather(response) {
   currentLocation.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   currentHumidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
   currentWind.innerHTML = `Wind: ${response.data.wind.speed} m/s`;
+
 }
 //FOR FORECAST
 let tomorrow = document.querySelector("#firstDate");
