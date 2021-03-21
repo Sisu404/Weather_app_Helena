@@ -25,32 +25,40 @@
                 </br> <input type="submit" value="Search" id="searchButton" />
 
             </form>
-            </br>
+            <br>
             <button id=locateButton>Locate me</button>
-            <br />
+        <br>
 
             <div class="todaysForecast">
+            
+          
                 <h2 id="currentLocation"></h2>
                 <h4 id="currentTime"></h4>
+                <br>    
                 <div class="current"><h4 id="currentTemperature"></h4><span class="units"><a href="#" id="celsius-link" class="active">°C</a> | <a href="#" id="fahrenheit-link">°F</a></span>
                 </div>
                 <div class="icon">
                 <img id="currentWeatherIcon" src="">
-                </div>
+                </div>              
                 <h4 id="weatherMainly"></h4>
+                               
+              
                 <h4 id="currentTempMaxMin"></h4>
                 <h4 id="currentHumidity"></h4>
                 <h4 id="currentWind"></h4>
+            
+               
+        
             </div>
-            <br />
-            <br />
+            <br>
+            <br>
 
             <div class="weatherForecast">
                 <h3>5 Day Weather Forecast</h3>
-                <br />
-                <br />
+                <br>
+                <br>
                     <div class="row justify-content-evenly">
-                    <div class="col-2">                        
+                    <div class="col order-first">                        
                     <div class="firstDay">                        
                             <h6 id="firstDate"></h6>
                             <h6 id="firstMax"></h6>
@@ -58,7 +66,7 @@
                             <img id="firstWeatherIcon" src="" alt="">
                     </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col order-second">
                     <div class="secondDay">
                         <h6 id="secondDate"></h6>
                         <h6 id="secondMax"></h6>
@@ -66,7 +74,7 @@
                         <img id="secondWeatherIcon" src="" alt="">
                     </div>
                     </div>
-                    <div class=col-2>
+                    <div class="col order-third">
                     <div class="thirdDay">
                         <h6 id="thirdDate"></h6>
                         <h6 id="thirdMax"></h6>
@@ -74,7 +82,7 @@
                         <img id="thirdWeatherIcon" src="" alt="">                    
                     </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col order-fourth">
                     <div class="fourthDay">
                         <h6 id="fourthDate"></h6>
                         <h6 id="fourthMax"></h6>
@@ -82,7 +90,7 @@
                         <img id="fourthWeatherIcon" src="" alt="">
                     </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col order-last">
                     <div class="fifthDay">
                         <h6 id="fifthDate"></h6>
                         <h6 id="fifthMax"></h6>

@@ -33,8 +33,9 @@ h2 {
 }
 .icon {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+
+  padding: 0;
+  margin: 0;
 }
 
 .currentMaxMin {
