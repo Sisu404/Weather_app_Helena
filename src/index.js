@@ -137,10 +137,8 @@ function locateCoordinates() {
 let locateButton = document.querySelector("#locateButton");
 locateButton.addEventListener("click", locateCoordinates);
 locateButton.addEventListener("click", clearSearchField);
-
-
 function clearSearchField() {
-let searchInput = document.getElementById("form");
+let searchInput = document.getElementById("locateButton");
 searchInput = "";
 }
 
