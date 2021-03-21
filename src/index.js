@@ -260,8 +260,8 @@ function convertFahrenheitTemperature(event) {
   let fifthDayFahrenheitTempMin = fifthDayCelsiusTempMin * 1.8 + 32;
 
   currentTempElement.innerHTML = Math.round(fahrenheitTemperature);
-  currentTempMaxElement.innerHTML = "Max:" + Math.round(fahrenheitTempMax);
-  currentTempMinElement.innerHTML = "Min:"  + Math.round(fahrenheitTempMin);
+  currentTempMaxMinElement.innerHTML = "Max: " + Math.round(fahrenheitTempMax) + " " + "Min: " + Math.round(fahrenheitTempMin) ;
+
   firstDayMaxElement.innerHTML = "Max: " + Math.round(firstDayfahrenheitTempMax);
   firstDayMinElement.innerHTML = "Min: " + Math.round(firstDayfahrenheitTempMin);
   secondDayMaxElement.innerHTML = "Max: " + Math.round(secondDayFahrenheitTempMax);
@@ -279,8 +279,8 @@ function convertCelsiusTemperature(event) {
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
   currentTempElement.innerHTML = Math.round(celsiusTemperature);
-  currentTempMaxElement.innerHTML = "Max:" + Math.round(celsiusCurrentTempMax);
-  currentTempMinElement.innerHTML = "Min:"  + Math.round(celsiusCurrentTempMin);
+  currentTempMaxMinElement.innerHTML = "Max: " + Math.round(celsiusCurrentTempMax) + " " + "Min: " + Math.round(celsiusCurrentTempMin) ;
+
   firstDayMaxElement.innerHTML = "Max: " + Math.round(firstDayCelsiusTempMax);
   firstDayMinElement.innerHTML = "Min: " + Math.round(firstDayCelsiusTempMin);
   secondDayMaxElement.innerHTML = "Max: " + Math.round(secondDayCelsiusTempMax);
